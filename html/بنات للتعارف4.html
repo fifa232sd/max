@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Background with Buttons</title>
+    <style>
+        /* Set the body's height and remove margins */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Cool gradient background */
+        .background {
+            background: linear-gradient(45deg, #FF6F61, #6B8E23, #8A2BE2, #00BFFF);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Gradient animation */
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Centered content */
+        .content {
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        /* Buttons Styling */
+        .button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #FF6347;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #FF4500;
+        }
+
+        /* Disable button */
+        .disabled {
+            background-color: #d3d3d3;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Gradient -->
+    <div class="background"></div>
+
+    <!-- Content with Buttons -->
+    <div class="content">
+        <button class="button" id="subscribeBtn" onclick="window.open('https://www.youtube.com/@Mil_qotes1?sub_confirmation=1', '_blank')">Subscribe</button>
+        <button class="button" id="likeBtn" onclick="window.open('https://youtu.be/i2l8-8m2gVs?si=bsS4JyQoZPgFlaum', '_blank')">Like</button>
+        <button class="button disabled" id="shamilBtn" onclick="window.open('https://ahlam.net/filter/women', '_blank')" disabled>بنات للتعارف</button>
+    </div>
+
+    <script>
+        // Function to enable the third button after 25 seconds
+        let subscribeClicked = false;
+        let likeClicked = false;
+
+        // Track if both buttons are clicked
+        document.getElementById('subscribeBtn').addEventListener('click', function() {
+            subscribeClicked = true;
+            checkButtons();
+        });
+
+        document.getElementById('likeBtn').addEventListener('click', function() {
+            likeClicked = true;
+            checkButtons();
+        });
+
+        function checkButtons() {
+            // Enable the third button only after both the first and second buttons are clicked
+            if (subscribeClicked && likeClicked) {
+                setTimeout(() => {
+                    document.getElementById('shamilBtn').disabled = false;
+                    document.getElementById('shamilBtn').classList.remove('disabled');
+                }, 25000);  // 25 seconds delay
+            }
+        }
+    </script>
+
+</body>
+</html>
